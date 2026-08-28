@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>O Fim Ainda Não Chegou</title>
+
+
+    <!-- =====================================================
+         FONTES
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         APLICAÇÃO
+         ===================================================== -->
+
+    <div class="app">
+
+
+        <!-- =================================================
+             BARRA LATERAL ESQUERDA
+             ================================================= -->
+
+        <aside class="sidebar">
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <div class="logo-title">
+                    O Fim Ainda Não Chegou
+                </div>
+
+                <div class="logo-subtitle">
+                    Creative Storytelling
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <nav class="sidebar-menu">
+
+
+                <button
+                    class="menu-item active"
+                    type="button"
+                >
+
+                    <span class="menu-icon">
+                        ✦
+                    </span>
+
+                    <span>
+                        Criador
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="menu-item"
+                    type="button"
+                >
+
+                    <span class="menu-icon">
+                        ♙
+                    </span>
+
+                    <span>
+                        Personagens
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="menu-item"
+                    type="button"
+                >
+
+                    <span class="menu-icon">
+                        ◈
+                    </span>
+
+                    <span>
+                        Mundos
+                    </span>
+
+                </button>
+
+
+                <button
+                    class="menu-item"
+                    type="button"
+                >
+
+                    <span class="menu-icon">
+                        ▤
+                    </span>
+
+                    <span>
+                        Histórias
+                    </span>
+
+                </button>
+
+
+            </nav>
+
+
+            <!-- RODAPÉ -->
+
+            <div class="sidebar-footer">
+
+                Seu espaço para criar.
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =================================================
+             ÁREA CENTRAL
+             ================================================= -->
+
+        <main class="main-content">
+
+
+            <!-- BARRA SUPERIOR -->
+
+            <header class="top-bar">
+
+                <div class="top-title">
+                    Criador
+                </div>
+
+                <div class="top-status">
+                    Assistente criativo
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 ÁREA DE CONVERSA
+                 ================================================= -->
+
+            <section
+                class="chat-area"
+                id="chatArea"
+            >
+
+
+                <!-- =================================================
+                     TELA INICIAL
+                     ================================================= -->
+
+                <div
+                    class="welcome"
+                    id="welcome"
+                >
+
+                    <div class="welcome-symbol">
+                        ✦
+                    </div>
+
+                    <h1>
+                        O que vamos criar hoje?
+                    </h1>
+
+                    <p>
+                        Desenvolva personagens, mundos e histórias.
+                        Sua próxima grande ideia pode começar aqui.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     MENSAGENS
+                     ================================================= -->
+
+                <div
+                    class="messages"
+                    id="messages"
+                >
+
+                    <!-- As mensagens serão adicionadas pelo JavaScript -->
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CAIXA DE TEXTO
+                 ================================================= -->
+
+            <footer class="input-area">
+
+
+                <form
+                    class="input-wrapper"
+                    id="chatForm"
+                >
+
+
+                    <textarea
+                        id="chatInput"
+                        placeholder="Conte-me o que você quer criar..."
+                        rows="1"
+                        autocomplete="off"
+                    ></textarea>
+
+
+                    <button
+                        class="send-button"
+                        id="sendButton"
+                        type="submit"
+                        title="Enviar mensagem"
+                    >
+
+                        ➤
+
+                    </button>
+
+
+                </form>
+
+
+                <div class="input-hint">
+
+                    Pressione Enter para enviar · Shift + Enter para quebrar a linha
+
+                </div>
+
+
+            </footer>
+
+
+        </main>
+
+
+
+        <!-- =================================================
+             BARRA LATERAL DIREITA
+             ================================================= -->
+
+        <aside class="right-sidebar">
+
+
+            <div class="right-sidebar-title">
+
+                Sugestões
+
+            </div>
+
+
+            <div class="suggestions">
+
+
+                <!-- =================================================
+                     CARD 1 — PERSONAGEM
+                     ================================================= -->
+
+                <div
+                    class="interactive-card"
+                    id="sug-personagem"
+                >
+
+
+                    <div class="card-icon-container">
+
+                        <img
+                            src="assets/icons/mago.png"
+                            alt="Ícone de personagem"
+                            class="card-icon"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="card-content"
+                        onclick="fillPrompt('Desenvolver um protagonista único com segredos e medos.')"
+                    >
+
+                        <span class="card-title">
+                            Criar personagem
+                        </span>
+
+                        <span class="card-subtitle">
+                            Desenvolva personagens únicos e memoráveis
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="card-arrow"
+                        type="button"
+                        onclick="fillPrompt('Desenvolver um protagonista único com segredos e medos.')"
+                        title="Selecionar sugestão"
+                    >
+
+                        ➜
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CARD 2 — HISTÓRIA
+                     ================================================= -->
+
+                <div
+                    class="interactive-card"
+                    id="sug-historia"
+                >
+
+
+                    <div class="card-icon-container">
+
+                        <img
+                            src="assets/icons/pergaminho.png"
+                            alt="Ícone de história"
+                            class="card-icon"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="card-content"
+                        onclick="fillPrompt('Estruturar a trama principal, clímax e conflitos.')"
+                    >
+
+                        <span class="card-title">
+                            Criar história
+                        </span>
+
+                        <span class="card-subtitle">
+                            Desenvolva tramas envolventes e memoráveis
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="card-arrow"
+                        type="button"
+                        onclick="fillPrompt('Estruturar a trama principal, clímax e conflitos.')"
+                        title="Selecionar sugestão"
+                    >
+
+                        ➜
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CARD 3 — MUNDO
+                     ================================================= -->
+
+                <div
+                    class="interactive-card"
+                    id="sug-mundo"
+                >
+
+
+                    <div class="card-icon-container">
+
+                        <img
+                            src="assets/icons/planeta.png"
+                            alt="Ícone de mundo"
+                            class="card-icon"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="card-content"
+                        onclick="fillPrompt('Criar regras para um sistema de magia ou tecnologia.')"
+                    >
+
+                        <span class="card-title">
+                            Criar mundo
+                        </span>
+
+                        <span class="card-subtitle">
+                            Construa mundos ricos, detalhados e únicos
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="card-arrow"
+                        type="button"
+                        onclick="fillPrompt('Criar regras para um sistema de magia ou tecnologia.')"
+                        title="Selecionar sugestão"
+                    >
+
+                        ➜
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     CARD 4 — AJUDA
+                     ================================================= -->
+
+                <div
+                    class="interactive-card"
+                    id="sug-ajuda"
+                >
+
+
+                    <div class="card-icon-container">
+
+                        <img
+                            src="assets/icons/interrogacao.png"
+                            alt="Ícone de ajuda"
+                            class="card-icon"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="card-content"
+                        onclick="fillPrompt('Estou com bloqueio criativo, me dê uma opinião crítica.')"
+                    >
+
+                        <span class="card-title">
+                            Pedir ajuda
+                        </span>
+
+                        <span class="card-subtitle">
+                            Supere bloqueios e desenvolva novas ideias
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="card-arrow"
+                        type="button"
+                        onclick="fillPrompt('Estou com bloqueio criativo, me dê uma opinião crítica.')"
+                        title="Selecionar sugestão"
+                    >
+
+                        ➜
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </aside>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

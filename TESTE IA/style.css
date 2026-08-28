@@ -1,0 +1,1349 @@
+/* ============================================================
+   CONFIGURAÇÕES GERAIS
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --background: #0d0c0b;
+
+    --sidebar: #11100f;
+
+    --panel: #151311;
+
+    --border: rgba(180, 140, 100, 0.25);
+
+    --border-strong: rgba(180, 140, 100, 0.40);
+
+    --border-hover: rgba(180, 140, 100, 0.65);
+
+    --gold: #b48c64;
+
+    --gold-light: #e2d6c5;
+
+    --text: #e2d6c5;
+
+    --text-secondary: rgba(210, 196, 180, 0.70);
+
+    --text-muted: rgba(210, 196, 180, 0.45);
+
+}
+
+
+/* ============================================================
+   HTML / BODY
+   ============================================================ */
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+
+body {
+
+    font-family: 'Quicksand', sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    overflow: hidden;
+
+}
+
+
+
+/* ============================================================
+   APLICAÇÃO PRINCIPAL
+   ============================================================ */
+
+.app {
+
+    width: 100%;
+    height: 100vh;
+
+    display: grid;
+
+    /*
+       ESQUERDA | CENTRO | DIREITA
+
+       250px     | 1fr    | 390px
+    */
+
+    grid-template-columns:
+        250px
+        minmax(0, 1fr)
+        390px;
+
+}
+
+
+
+/* ============================================================
+   BARRA LATERAL ESQUERDA
+   ============================================================ */
+
+.sidebar {
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: rgba(17, 16, 15, 0.96);
+
+    /*
+       LIMITE ENTRE ESQUERDA E CENTRO
+    */
+
+    border-right:
+        1px solid
+        var(--border-strong);
+
+    overflow: hidden;
+
+}
+
+
+
+/* ============================================================
+   LOGO
+   ============================================================ */
+
+.logo {
+
+    width: 100%;
+
+    padding:
+        30px 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 6px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    text-align: center;
+
+}
+
+
+.logo-title {
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    color: var(--gold-light);
+
+    line-height: 1.3;
+
+}
+
+
+.logo-subtitle {
+
+    font-size: 11px;
+
+    color: var(--text-muted);
+
+    letter-spacing: 0.5px;
+
+}
+
+
+
+/* ============================================================
+   MENU LATERAL ESQUERDO
+   ============================================================ */
+
+.sidebar-menu {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        30px 18px;
+
+}
+
+
+.menu-item {
+
+    width: 100%;
+
+    max-width: 210px;
+
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 14px;
+
+    padding:
+        12px 16px;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: var(--text-secondary);
+
+    font-family: 'Quicksand', sans-serif;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+
+}
+
+
+.menu-item:hover {
+
+    background:
+        rgba(180, 140, 100, 0.06);
+
+    border-color:
+        rgba(180, 140, 100, 0.22);
+
+    color:
+        var(--gold-light);
+
+}
+
+
+.menu-item.active {
+
+    background:
+        rgba(180, 140, 100, 0.10);
+
+    border-color:
+        rgba(180, 140, 100, 0.30);
+
+    color:
+        var(--gold-light);
+
+}
+
+
+.menu-item:active {
+
+    transform: scale(0.98);
+
+}
+
+
+.menu-icon {
+
+    width: 20px;
+
+    min-width: 20px;
+
+    text-align: center;
+
+    color: var(--gold);
+
+}
+
+
+
+/* ============================================================
+   RODAPÉ ESQUERDO
+   ============================================================ */
+
+.sidebar-footer {
+
+    width: 100%;
+
+    margin-top: auto;
+
+    padding:
+        20px 15px;
+
+    text-align: center;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+    border-top:
+        1px solid
+        var(--border);
+
+}
+
+
+
+/* ============================================================
+   ÁREA CENTRAL
+   ============================================================ */
+
+.main-content {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100vh;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(100, 70, 40, 0.07),
+            transparent 55%
+        );
+
+}
+
+
+
+/* ============================================================
+   BARRA SUPERIOR
+   ============================================================ */
+
+.top-bar {
+
+    width: 100%;
+
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 30px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+}
+
+
+.top-title {
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 15px;
+
+    color: var(--gold-light);
+
+}
+
+
+.top-status {
+
+    font-size: 11px;
+
+    color: var(--text-muted);
+
+}
+
+
+
+/* ============================================================
+   ÁREA DE CHAT
+   ============================================================ */
+
+.chat-area {
+
+    width: 100%;
+
+    height:
+        calc(100vh - 65px);
+
+    position: relative;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    padding:
+        50px 40px 180px;
+
+}
+
+
+
+/* ============================================================
+   MENSAGEM DE BOAS-VINDAS
+   ============================================================ */
+
+.welcome {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin:
+        0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+}
+
+
+.welcome-symbol {
+
+    margin-bottom: 20px;
+
+    font-size: 30px;
+
+    color: var(--gold);
+
+    opacity: 0.8;
+
+}
+
+
+.welcome h1 {
+
+    width: 100%;
+
+    margin-bottom: 14px;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    color: var(--gold-light);
+
+    text-align: center;
+
+}
+
+
+.welcome p {
+
+    width: 100%;
+
+    max-width: 560px;
+
+    margin:
+        0 auto;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: var(--text-secondary);
+
+    text-align: center;
+
+}
+
+
+.welcome.hidden {
+
+    display: none;
+
+}
+
+
+
+/* ============================================================
+   MENSAGENS
+   ============================================================ */
+
+.messages {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin:
+        30px auto 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+
+/* ============================================================
+   MENSAGEM INDIVIDUAL
+   ============================================================ */
+
+.message {
+
+    width: 100%;
+
+    display: flex;
+
+    animation:
+        messageAppear
+        0.25s
+        ease;
+
+}
+
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+
+/* ============================================================
+   USUÁRIO — DIREITA
+   ============================================================ */
+
+.message.user {
+
+    justify-content: flex-end;
+
+}
+
+
+.message.user .message-bubble {
+
+    max-width: 70%;
+
+    padding:
+        12px 16px;
+
+    background:
+        rgba(180, 140, 100, 0.16);
+
+    border:
+        1px solid
+        rgba(180, 140, 100, 0.30);
+
+    border-radius:
+        14px
+        14px
+        3px
+        14px;
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: break-word;
+
+}
+
+
+
+/* ============================================================
+   CHATBOT — ESQUERDA
+   ============================================================ */
+
+.message.assistant {
+
+    justify-content: flex-start;
+
+}
+
+
+.message.assistant .message-bubble {
+
+    max-width: 75%;
+
+    padding:
+        14px 17px;
+
+    background:
+        rgba(25, 22, 19, 0.90);
+
+    border:
+        1px solid
+        rgba(180, 140, 100, 0.20);
+
+    border-radius:
+        14px
+        14px
+        14px
+        3px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: break-word;
+
+}
+
+
+
+/* ============================================================
+   INDICADOR DE DIGITAÇÃO
+   ============================================================ */
+
+.typing {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+}
+
+
+.typing span {
+
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    opacity: 0.5;
+
+    animation:
+        typingAnimation
+        1.2s
+        infinite;
+
+}
+
+
+.typing span:nth-child(2) {
+
+    animation-delay: 0.2s;
+
+}
+
+
+.typing span:nth-child(3) {
+
+    animation-delay: 0.4s;
+
+}
+
+
+@keyframes typingAnimation {
+
+    0%,
+    60%,
+    100% {
+
+        opacity: 0.25;
+
+        transform:
+            translateY(0);
+
+    }
+
+    30% {
+
+        opacity: 1;
+
+        transform:
+            translateY(-3px);
+
+    }
+
+}
+
+
+
+/* ============================================================
+   BARRA DE INPUT
+   ============================================================ */
+
+.input-area {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 20;
+
+    padding:
+        18px
+        35px
+        22px;
+
+    background:
+
+        linear-gradient(
+            to top,
+            #0d0c0b 75%,
+            transparent
+        );
+
+}
+
+
+.input-wrapper {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin:
+        0 auto;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 10px;
+
+    padding: 8px;
+
+    background:
+        rgba(25, 22, 19, 0.97);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 10px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.input-wrapper:focus-within {
+
+    border-color:
+        rgba(180, 140, 100, 0.50);
+
+    box-shadow:
+        0 0 15px
+        rgba(180, 140, 100, 0.08);
+
+}
+
+
+#chatInput {
+
+    flex: 1;
+
+    min-height: 42px;
+
+    max-height: 130px;
+
+    resize: none;
+
+    padding:
+        11px 13px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-family:
+        'Quicksand',
+        sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+#chatInput::placeholder {
+
+    color: var(--text-muted);
+
+}
+
+
+
+/* ============================================================
+   BOTÃO ENVIAR
+   ============================================================ */
+
+.send-button {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(180, 140, 100, 0.30);
+
+    border-radius: 7px;
+
+    background:
+        rgba(180, 140, 100, 0.08);
+
+    color: var(--gold);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.1s ease;
+
+}
+
+
+.send-button:hover {
+
+    background:
+        rgba(180, 140, 100, 0.18);
+
+    border-color:
+        var(--border-hover);
+
+    color:
+        var(--gold-light);
+
+}
+
+
+.send-button:active {
+
+    transform:
+        scale(0.94);
+
+}
+
+
+.send-button:disabled {
+
+    opacity: 0.4;
+
+    cursor: not-allowed;
+
+}
+
+
+
+/* ============================================================
+   TEXTO DO INPUT
+   ============================================================ */
+
+.input-hint {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin:
+        7px auto 0;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    color: var(--text-muted);
+
+}
+
+
+
+/* ============================================================
+   BARRA LATERAL DIREITA
+   ============================================================ */
+
+.right-sidebar {
+
+    width: 100%;
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding:
+        30px 20px;
+
+    background:
+        rgba(17, 16, 15, 0.96);
+
+    /*
+       LIMITE ENTRE CENTRO E DIREITA
+    */
+
+    border-left:
+        1px solid
+        var(--border-strong);
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+}
+
+
+.right-sidebar-title {
+
+    width: 100%;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+    font-family: 'Cinzel', serif;
+
+    font-size: 15px;
+
+    color: var(--gold-light);
+
+}
+
+
+
+/* ============================================================
+   CONTAINER DOS CARDS
+   ============================================================ */
+
+.suggestions {
+
+    width: 100%;
+
+    max-width: 330px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin:
+        0 auto;
+
+}
+
+
+.suggestions.hidden {
+
+    display: none;
+
+}
+
+
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+
+.interactive-card {
+
+    width: 330px;
+
+    height: 115px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        rgba(20, 18, 16, 0.35);
+
+    border:
+        1px solid
+        rgba(180, 140, 100, 0.30);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.interactive-card:hover {
+
+    background:
+        rgba(180, 140, 100, 0.08);
+
+    border-color:
+        rgba(180, 140, 100, 0.60);
+
+    box-shadow:
+        0 0 12px
+        rgba(180, 140, 100, 0.20),
+
+        inset 0 0 10px
+        rgba(180, 140, 100, 0.08);
+
+}
+
+
+.interactive-card:active {
+
+    transform:
+        scale(0.98);
+
+    background:
+        rgba(180, 140, 100, 0.15);
+
+}
+
+
+
+/* ============================================================
+   ÍCONE
+   ============================================================ */
+
+.card-icon-container {
+
+    width: 70px;
+
+    height: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0, 0, 0, 0.20);
+
+    border-right:
+        1px solid
+        rgba(180, 140, 100, 0.15);
+
+}
+
+
+.card-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+}
+
+
+
+/* ============================================================
+   CONTEÚDO DO CARD
+   ============================================================ */
+
+.card-content {
+
+    flex: 1;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding:
+        0 12px;
+
+    cursor: pointer;
+
+}
+
+
+.card-title {
+
+    font-family:
+        'Cinzel',
+        serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: var(--gold-light);
+
+    margin-bottom: 5px;
+
+    line-height: 1.2;
+
+}
+
+
+.card-subtitle {
+
+    font-size: 11px;
+
+    color: var(--text-secondary);
+
+    line-height: 1.4;
+
+}
+
+
+
+/* ============================================================
+   SETA
+   ============================================================ */
+
+.card-arrow {
+
+    width: 50px;
+
+    height: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-left:
+        1px solid
+        rgba(180, 140, 100, 0.15);
+
+    background:
+        rgba(0, 0, 0, 0.10);
+
+    color: var(--gold);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.card-arrow:hover {
+
+    background:
+        rgba(180, 140, 100, 0.15);
+
+    color:
+        var(--gold-light);
+
+}
+
+
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+    .app {
+
+        grid-template-columns:
+            210px
+            minmax(0, 1fr)
+            330px;
+
+    }
+
+
+    .interactive-card {
+
+        width: 290px;
+
+    }
+
+
+    .suggestions {
+
+        max-width: 290px;
+
+    }
+
+}
+
+
+
+@media (max-width: 850px) {
+
+    .app {
+
+        grid-template-columns:
+            210px
+            minmax(0, 1fr);
+
+    }
+
+
+    .right-sidebar {
+
+        display: none;
+
+    }
+
+}
+
+
+
+@media (max-width: 650px) {
+
+    .app {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+
+    }
+
+
+    .sidebar {
+
+        display: none;
+
+    }
+
+
+    .chat-area {
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+
+    }
+
+
+    .message.user .message-bubble,
+    .message.assistant .message-bubble {
+
+        max-width: 85%;
+
+    }
+
+
+    .input-area {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+
+    }
+
+}
