@@ -1,539 +1,167 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onoma - Seu assistente virtual para criação de histórias</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <title>O Fim Ainda Não Chegou</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-
-    <!-- =====================================================
-         FONTES
-         ===================================================== -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-
-    <!-- =====================================================
-         CSS
-         ===================================================== -->
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-
-    <!-- =====================================================
-         APLICAÇÃO
-         ===================================================== -->
+    <div class="cosmic-background">
+        <div class="stars-layer"></div>
+        <div class="nebula-glow"></div>
+    </div>
 
     <div class="app">
 
-
-        <!-- =================================================
-             BARRA LATERAL ESQUERDA
-             ================================================= -->
-
-        <aside class="sidebar">
-
-
-            <!-- LOGO -->
+        <aside class="sidebar" id="sidebar">
 
             <div class="logo">
-
-                <div class="logo-title">
-                    O Fim Ainda Não Chegou
-                </div>
-
-                <div class="logo-subtitle">
-                    Creative Storytelling
-                </div>
-
+                <div class="logo-badge">✦</div>
+                <div class="logo-title">Onoma</div>
+                <div class="logo-divider-line"></div>
+                <div class="logo-subtitle">Assistente de Criação</div>
             </div>
-
-
-            <!-- MENU -->
 
             <nav class="sidebar-menu">
 
-
-                <button
-                    class="menu-item active"
-                    type="button"
-                >
-
-                    <span class="menu-icon">
-                        ✦
-                    </span>
-
-                    <span>
-                        Criador
-                    </span>
-
+                <button class="menu-item action-btn primary-new-chat" id="newChatBtn" type="button">
+                    <span class="menu-icon">＋</span>
+                    <span>Nova conversa</span>
                 </button>
 
+                <div class="menu-divider"></div>
 
-                <button
-                    class="menu-item"
-                    type="button"
-                >
+                <div class="history-section-header">
+                    <span>Histórico de Conversas</span>
+                    <button class="clear-history-btn" id="clearHistoryBtn" title="Limpar todo o histórico">🗑️ Limpar</button>
+                </div>
 
-                    <span class="menu-icon">
-                        ♙
-                    </span>
-
-                    <span>
-                        Personagens
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="menu-item"
-                    type="button"
-                >
-
-                    <span class="menu-icon">
-                        ◈
-                    </span>
-
-                    <span>
-                        Mundos
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="menu-item"
-                    type="button"
-                >
-
-                    <span class="menu-icon">
-                        ▤
-                    </span>
-
-                    <span>
-                        Histórias
-                    </span>
-
-                </button>
-
+                <div class="history-container" id="historyContainer">
+                    </div>
 
             </nav>
 
-
-            <!-- RODAPÉ -->
-
             <div class="sidebar-footer">
-
                 Seu espaço para criar.
-
             </div>
-
 
         </aside>
 
-
-
-        <!-- =================================================
-             ÁREA CENTRAL
-             ================================================= -->
-
         <main class="main-content">
 
-
-            <!-- BARRA SUPERIOR -->
-
             <header class="top-bar">
-
-                <div class="top-title">
-                    Criador
+                <div class="top-bar-left">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" title="Abrir menu">☰</button>
+                    <div class="top-title">Criador</div>
                 </div>
-
-                <div class="top-status">
-                    Assistente criativo
-                </div>
-
+                <div class="top-status"><span class="status-dot"></span> Assistente criativo</div>
             </header>
 
+            <section class="chat-area" id="chatArea">
 
-
-            <!-- =================================================
-                 ÁREA DE CONVERSA
-                 ================================================= -->
-
-            <section
-                class="chat-area"
-                id="chatArea"
-            >
-
-
-                <!-- =================================================
-                     TELA INICIAL
-                     ================================================= -->
-
-                <div
-                    class="welcome"
-                    id="welcome"
-                >
-
-                    <div class="welcome-symbol">
-                        ✦
-                    </div>
-
-                    <h1>
-                        O que vamos criar hoje?
-                    </h1>
-
+                <div class="welcome" id="welcome">
+                    <div class="welcome-symbol">✦</div>
+                    <h1>O que vamos criar hoje?</h1>
                     <p>
                         Desenvolva personagens, mundos e histórias.
                         Sua próxima grande ideia pode começar aqui.
                     </p>
-
                 </div>
 
-
-
-                <!-- =================================================
-                     MENSAGENS
-                     ================================================= -->
-
-                <div
-                    class="messages"
-                    id="messages"
-                >
-
-                    <!-- As mensagens serão adicionadas pelo JavaScript -->
-
-                </div>
-
+                <div class="messages" id="messages">
+                    </div>
 
             </section>
 
-
-
-            <!-- =================================================
-                 CAIXA DE TEXTO
-                 ================================================= -->
-
             <footer class="input-area">
-
-
-                <form
-                    class="input-wrapper"
-                    id="chatForm"
-                >
-
-
+                <form class="input-wrapper" id="chatForm">
                     <textarea
                         id="chatInput"
-                        placeholder="Conte-me o que você quer criar..."
+                        placeholder="Conte-me o que você quer criar ou use o microfone..."
                         rows="1"
                         autocomplete="off"
                     ></textarea>
 
-
-                    <button
-                        class="send-button"
-                        id="sendButton"
-                        type="submit"
-                        title="Enviar mensagem"
-                    >
-
-                        ➤
-
+                    <button class="mic-button" id="micButton" type="button" title="Falar por voz">
+                        🎤
                     </button>
 
-
+                    <button class="send-button" id="sendButton" type="submit" title="Enviar mensagem">
+                        ➤
+                    </button>
                 </form>
 
-
                 <div class="input-hint">
-
-                    Pressione Enter para enviar · Shift + Enter para quebrar a linha
-
+                    Pressione Enter para enviar · Shift + Enter para quebrar a linha · Ou use o microfone contínuo
                 </div>
-
-
             </footer>
-
 
         </main>
 
-
-
-        <!-- =================================================
-             BARRA LATERAL DIREITA
-             ================================================= -->
-
         <aside class="right-sidebar">
-
-
-            <div class="right-sidebar-title">
-
-                Sugestões
-
-            </div>
-
+            <div class="right-sidebar-title">Sugestões</div>
 
             <div class="suggestions">
-
-
-                <!-- =================================================
-                     CARD 1 — PERSONAGEM
-                     ================================================= -->
-
-                <div
-                    class="interactive-card"
-                    id="sug-personagem"
-                >
-
-
+                <div class="interactive-card" id="sug-personagem">
                     <div class="card-icon-container">
-
-                        <img
-                            src="assets/icons/mago.png"
-                            alt="Ícone de personagem"
-                            class="card-icon"
-                        >
-
+                        <img src="assets/icons/mago.png" alt="Ícone de personagem" class="card-icon">
                     </div>
-
-
-                    <div
-                        class="card-content"
-                        onclick="fillPrompt('Desenvolver um protagonista único com segredos e medos.')"
-                    >
-
-                        <span class="card-title">
-                            Criar personagem
-                        </span>
-
-                        <span class="card-subtitle">
-                            Desenvolva personagens únicos e memoráveis
-                        </span>
-
+                    <div class="card-content" onclick="fillPrompt('Desenvolver um protagonista único com segredos e medos.')">
+                        <span class="card-title">Criar personagem</span>
+                        <span class="card-subtitle">Desenvolva personagens únicos e memoráveis</span>
                     </div>
-
-
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        onclick="fillPrompt('Desenvolver um protagonista único com segredos e medos.')"
-                        title="Selecionar sugestão"
-                    >
-
-                        ➜
-
-                    </button>
-
-
+                    <button class="card-arrow" type="button" onclick="fillPrompt('Desenvolver um protagonista único com segredos e medos.')" title="Selecionar sugestão">➜</button>
                 </div>
 
-
-
-                <!-- =================================================
-                     CARD 2 — HISTÓRIA
-                     ================================================= -->
-
-                <div
-                    class="interactive-card"
-                    id="sug-historia"
-                >
-
-
+                <div class="interactive-card" id="sug-historia">
                     <div class="card-icon-container">
-
-                        <img
-                            src="assets/icons/pergaminho.png"
-                            alt="Ícone de história"
-                            class="card-icon"
-                        >
-
+                        <img src="assets/icons/pergaminho.png" alt="Ícone de história" class="card-icon">
                     </div>
-
-
-                    <div
-                        class="card-content"
-                        onclick="fillPrompt('Estruturar a trama principal, clímax e conflitos.')"
-                    >
-
-                        <span class="card-title">
-                            Criar história
-                        </span>
-
-                        <span class="card-subtitle">
-                            Desenvolva tramas envolventes e memoráveis
-                        </span>
-
+                    <div class="card-content" onclick="fillPrompt('Estruturar a trama principal, clímax e conflitos.')">
+                        <span class="card-title">Criar história</span>
+                        <span class="card-subtitle">Desenvolva tramas envolventes e memoráveis</span>
                     </div>
-
-
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        onclick="fillPrompt('Estruturar a trama principal, clímax e conflitos.')"
-                        title="Selecionar sugestão"
-                    >
-
-                        ➜
-
-                    </button>
-
-
+                    <button class="card-arrow" type="button" onclick="fillPrompt('Estruturar a trama principal, clímax e conflitos.')" title="Selecionar sugestão">➜</button>
                 </div>
 
-
-
-                <!-- =================================================
-                     CARD 3 — MUNDO
-                     ================================================= -->
-
-                <div
-                    class="interactive-card"
-                    id="sug-mundo"
-                >
-
-
+                <div class="interactive-card" id="sug-mundo">
                     <div class="card-icon-container">
-
-                        <img
-                            src="assets/icons/planeta.png"
-                            alt="Ícone de mundo"
-                            class="card-icon"
-                        >
-
+                        <img src="assets/icons/planeta.png" alt="Ícone de mundo" class="card-icon">
                     </div>
-
-
-                    <div
-                        class="card-content"
-                        onclick="fillPrompt('Criar regras para um sistema de magia ou tecnologia.')"
-                    >
-
-                        <span class="card-title">
-                            Criar mundo
-                        </span>
-
-                        <span class="card-subtitle">
-                            Construa mundos ricos, detalhados e únicos
-                        </span>
-
+                    <div class="card-content" onclick="fillPrompt('Criar regras para um sistema de magia ou tecnologia.')">
+                        <span class="card-title">Criar mundo</span>
+                        <span class="card-subtitle">Construa mundos ricos, detalhados e únicos</span>
                     </div>
-
-
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        onclick="fillPrompt('Criar regras para um sistema de magia ou tecnologia.')"
-                        title="Selecionar sugestão"
-                    >
-
-                        ➜
-
-                    </button>
-
-
+                    <button class="card-arrow" type="button" onclick="fillPrompt('Criar regras para um sistema de magia ou tecnologia.')" title="Selecionar sugestão">➜</button>
                 </div>
 
-
-
-                <!-- =================================================
-                     CARD 4 — AJUDA
-                     ================================================= -->
-
-                <div
-                    class="interactive-card"
-                    id="sug-ajuda"
-                >
-
-
+                <div class="interactive-card" id="sug-ajuda">
                     <div class="card-icon-container">
-
-                        <img
-                            src="assets/icons/interrogacao.png"
-                            alt="Ícone de ajuda"
-                            class="card-icon"
-                        >
-
+                        <img src="assets/icons/interrogacao.png" alt="Ícone de ajuda" class="card-icon">
                     </div>
-
-
-                    <div
-                        class="card-content"
-                        onclick="fillPrompt('Estou com bloqueio criativo, me dê uma opinião crítica.')"
-                    >
-
-                        <span class="card-title">
-                            Pedir ajuda
-                        </span>
-
-                        <span class="card-subtitle">
-                            Supere bloqueios e desenvolva novas ideias
-                        </span>
-
+                    <div class="card-content" onclick="fillPrompt('Estou com bloqueio criativo, me dê uma opinião crítica.')">
+                        <span class="card-title">Pedir ajuda</span>
+                        <span class="card-subtitle">Supere bloqueios e desenvolva novas ideias</span>
                     </div>
-
-
-                    <button
-                        class="card-arrow"
-                        type="button"
-                        onclick="fillPrompt('Estou com bloqueio criativo, me dê uma opinião crítica.')"
-                        title="Selecionar sugestão"
-                    >
-
-                        ➜
-
-                    </button>
-
-
+                    <button class="card-arrow" type="button" onclick="fillPrompt('Estou com bloqueio criativo, me dê uma opinião crítica.')" title="Selecionar sugestão">➜</button>
                 </div>
-
-
             </div>
-
-
         </aside>
-
 
     </div>
 
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-         ===================================================== -->
-
     <script src="script.js"></script>
-
 </body>
 
 </html>
