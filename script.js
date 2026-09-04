@@ -25,7 +25,6 @@ if (mobileMenuBtn && sidebar) {
         sidebar.classList.toggle('mobile-active');
     });
 
-    // Fecha a sidebar ao clicar em algum item do histórico no mobile
     document.addEventListener('click', (event) => {
         if (window.innerWidth <= 650) {
             if (!sidebar.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
@@ -77,7 +76,6 @@ const chatDatabase = {
                 welcome?.classList.remove('hidden');
             }
 
-            // Fecha o menu no mobile após carregar uma sessão
             if (window.innerWidth <= 650 && sidebar) {
                 sidebar.classList.remove('mobile-active');
             }
@@ -123,7 +121,6 @@ function updateHistoryUI() {
     });
 }
 
-// Botão Nova Conversa
 if (newChatBtn) {
     newChatBtn.addEventListener('click', () => {
         currentConversationId = 'chat_' + Date.now();
@@ -137,7 +134,6 @@ if (newChatBtn) {
     });
 }
 
-// Botão Limpar Histórico
 if (clearHistoryBtn) {
     clearHistoryBtn.addEventListener('click', () => {
         if (confirm('Deseja realmente limpar todo o histórico de conversas?')) {
@@ -168,7 +164,7 @@ function speakText(text) {
 
 
 /* ============================================================
-   PREENCHER CAIXA DE TEXTO (E FECHAR MENU MOBILE SE ABERTO)
+   PREENCHER CAIXA DE TEXTO
    ============================================================ */
 
 window.fillPrompt = function (text) {

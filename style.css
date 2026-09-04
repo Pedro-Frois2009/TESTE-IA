@@ -385,6 +385,12 @@ body {
     overflow-x: hidden;
     padding: 40px 40px 180px;
     scroll-behavior: smooth;
+    
+    /* APLICAÇÃO DA SUA IMAGEM DE PERGAMINHO APENAS NA ÁREA DO CHAT */
+    background-image: linear-gradient(rgba(14, 12, 10, 0.78), rgba(14, 12, 10, 0.88)), url('fundo-ia.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* TELA DE BOAS-VINDAS */
@@ -531,7 +537,7 @@ body {
     left: 0; right: 0; bottom: 0;
     z-index: 20;
     padding: 20px 35px 24px;
-    background: linear-gradient(to top, var(--background) 70%, transparent);
+    background: linear-gradient(to top, rgba(14, 12, 10, 0.95) 70%, transparent);
 }
 
 .input-wrapper {
@@ -789,7 +795,6 @@ body {
 @media (max-width: 650px) {
     .app { grid-template-columns: minmax(0, 1fr); }
     
-    /* Sidebar se transforma em um menu lateral flutuante (overlay) */
     .sidebar {
         position: fixed;
         top: 0;
