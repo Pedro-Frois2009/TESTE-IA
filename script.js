@@ -144,22 +144,37 @@ if (clearHistoryBtn) {
 
 
 /* ============================================================
-   SÍNTESE DE VOZ (TEXT-TO-SPEECH)
+   SÍNTESE DE VOZ (AZURE TTS - IMPLEMENTAÇÃO cURL VIA FETCH)
    ============================================================ */
 
-function speakText(text) {
-    if (!('speechSynthesis' in window)) return;
-    
-    window.speechSynthesis.cancel();
-
+async function speakText(text) {
     const cleanText = text.replace(/[*_#`\[\]]/g, '');
-    
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.lang = 'pt-BR';
-    utterance.rate = 1.0;
-    utterance.pitch = 1.0;
+    const ssmlData = `<speak version='1.0' xml:lang='pt-BR'><voice xml:lang='pt-BR' xml:gender='Male' name='pt-BR-DonatoNeural'>${cleanText}</voice></speak>`;
 
-    window.speechSynthesis.speak(utterance);
+    try {
+        const response = await fetch("https://centralus.tts.speech.microsoft.com/cognitiveservices/v1", {
+            method: "POST",
+            headers: {
+                "Ocp-Apim-Subscription-Key": "1JtJ9h4ky6nY9AGquUQXTLx2OrFVAoIZOquSLWFbfYjS2fntuxdoJQQJ99CIAC1i4TkXJ3w3AAAYACOGxl4Q",
+                "Content-Type": "application/ssml+xml",
+                "X-Microsoft-OutputFormat": "audio-16khz-128kbitrate-mono-mp3",
+                "User-Agent": "curl"
+            },
+            body: ssmlData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro HTTP ao gerar áudio: ${response.status}`);
+        }
+
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+
+    } catch (error) {
+        console.error("Erro na requisição TTS da Azure:", error);
+    }
 }
 
 
@@ -333,7 +348,7 @@ if (chatForm) {
             setTimeout(() => {
                 addMessage(predefinedResponse, 'assistant');
                 chatDatabase.saveMessage('assistant', predefinedResponse);
-                speakText(predefinedResponse);
+                // Áudio não toca mais automaticamente aqui
                 setInputEnabled(true);
                 chatInput.focus();
             }, 600);
@@ -430,12 +445,11 @@ if (chatForm) {
             if (typeof assistantMessage === 'string' && assistantMessage.trim()) {
                 addMessage(assistantMessage, 'assistant');
                 chatDatabase.saveMessage('assistant', assistantMessage);
-                speakText(assistantMessage);
+                // Áudio removido daqui para não tocar de forma automática
             } else {
                 const fallbackMsg = 'Não consegui obter uma resposta do modelo.';
                 addMessage(fallbackMsg, 'assistant');
                 chatDatabase.saveMessage('assistant', fallbackMsg);
-                speakText(fallbackMsg);
             }
 
         } catch (error) {
@@ -444,7 +458,6 @@ if (chatForm) {
             const errorMsg = 'Não foi possível conectar à API da Azure.';
             addMessage(errorMsg, 'assistant');
             chatDatabase.saveMessage('assistant', errorMsg);
-            speakText(errorMsg);
 
         } finally {
             setInputEnabled(true);
@@ -455,7 +468,7 @@ if (chatForm) {
 
 
 /* ============================================================
-   CRIAR MENSAGEM (COM SUPORTE A MARKDOWN)
+   CRIAR MENSAGEM (COM SUPORTE A MARKDOWN E BOTÃO DE ÁUDIO)
    ============================================================ */
 
 function addMessage(text, sender) {
@@ -474,6 +487,15 @@ function appendMessageDOM(text, sender) {
 
     if (sender === 'assistant' && typeof marked !== 'undefined') {
         bubble.innerHTML = marked.parse(text);
+
+        // Botão de áudio inserido ao lado da resposta da IA (só toca se clicado)
+        const audioBtn = document.createElement('button');
+        audioBtn.className = 'message-audio-btn';
+        audioBtn.type = 'button';
+        audioBtn.innerHTML = '🔊 Ouvir áudio';
+        audioBtn.onclick = () => speakText(text);
+
+        bubble.appendChild(audioBtn);
     } else {
         bubble.textContent = text;
     }

@@ -386,7 +386,6 @@ body {
     padding: 40px 40px 180px;
     scroll-behavior: smooth;
     
-    /* APLICAÇÃO DA SUA IMAGEM DE PERGAMINHO APENAS NA ÁREA DO CHAT */
     background-image: linear-gradient(rgba(14, 12, 10, 0.78), rgba(14, 12, 10, 0.88)), url('fundo-ia.avif');
     background-size: cover;
     background-position: center;
@@ -506,6 +505,33 @@ body {
 .message.assistant .message-bubble li { margin-bottom: 6px; }
 .message.assistant .message-bubble h1, .message.assistant .message-bubble h2, .message.assistant .message-bubble h3 { font-family: 'Cinzel', serif; color: var(--gold-light); margin: 16px 0 8px 0; letter-spacing: 0.5px; }
 .message.assistant .message-bubble code { background: rgba(0,0,0,0.4); padding: 3px 6px; border-radius: 5px; font-family: monospace; font-size: 12.5px; color: var(--gold-light); border: 1px solid var(--border); }
+
+/* BOTÃO DE ÁUDIO NA MENSAGEM DA ASSISTENTE */
+.message-audio-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 6px 12px;
+    background: rgba(180, 140, 100, 0.1);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--gold);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.message-audio-btn:hover {
+    background: rgba(180, 140, 100, 0.25);
+    border-color: var(--border-hover);
+    color: var(--gold-light);
+}
+
+.message-audio-btn:active {
+    transform: scale(0.96);
+}
 
 .typing {
     display: flex;
@@ -680,7 +706,6 @@ body {
     margin: 0 auto;
 }
 
-/* CARDS REFINADOS COM GLOW E FLUIDEZ */
 .interactive-card {
     width: 330px;
     height: 115px;
