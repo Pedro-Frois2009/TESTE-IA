@@ -144,7 +144,7 @@ if (clearHistoryBtn) {
 
 
 /* ============================================================
-   SÍNTESE DE VOZ (AZURE TTS - IMPLEMENTAÇÃO cURL VIA FETCH)
+   SÍNTESE DE VOZ (AZURE TTS - CHAVES ISOLADAS NO keys.json)
    ============================================================ */
 
 async function speakText(text) {
@@ -152,10 +152,25 @@ async function speakText(text) {
     const ssmlData = `<speak version='1.0' xml:lang='pt-BR'><voice xml:lang='pt-BR' xml:gender='Male' name='pt-BR-DonatoNeural'>${cleanText}</voice></speak>`;
 
     try {
-        const response = await fetch("https://centralus.tts.speech.microsoft.com/cognitiveservices/v1", {
+        const keysResponse = await fetch('keys.json');
+        if (!keysResponse.ok) {
+            throw new Error('Não foi possível carregar o arquivo keys.json para o TTS.');
+        }
+
+        const keys = await keysResponse.json();
+        const AZURE_TTS_KEY = keys.AZURE_TTS_KEY;
+        const region = keys.AZURE_TTS_REGION || 'centralus';
+
+        if (!AZURE_TTS_KEY) {
+            throw new Error('AZURE_TTS_KEY não encontrada no keys.json.');
+        }
+
+        const ttsEndpoint = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
+
+        const response = await fetch(ttsEndpoint, {
             method: "POST",
             headers: {
-                "Ocp-Apim-Subscription-Key": "1JtJ9h4ky6nY9AGquUQXTLx2OrFVAoIZOquSLWFbfYjS2fntuxdoJQQJ99CIAC1i4TkXJ3w3AAAYACOGxl4Q",
+                "Ocp-Apim-Subscription-Key": AZURE_TTS_KEY,
                 "Content-Type": "application/ssml+xml",
                 "X-Microsoft-OutputFormat": "audio-16khz-128kbitrate-mono-mp3",
                 "User-Agent": "curl"
@@ -348,7 +363,6 @@ if (chatForm) {
             setTimeout(() => {
                 addMessage(predefinedResponse, 'assistant');
                 chatDatabase.saveMessage('assistant', predefinedResponse);
-                // Áudio não toca mais automaticamente aqui
                 setInputEnabled(true);
                 chatInput.focus();
             }, 600);
@@ -445,7 +459,6 @@ if (chatForm) {
             if (typeof assistantMessage === 'string' && assistantMessage.trim()) {
                 addMessage(assistantMessage, 'assistant');
                 chatDatabase.saveMessage('assistant', assistantMessage);
-                // Áudio removido daqui para não tocar de forma automática
             } else {
                 const fallbackMsg = 'Não consegui obter uma resposta do modelo.';
                 addMessage(fallbackMsg, 'assistant');
@@ -488,7 +501,6 @@ function appendMessageDOM(text, sender) {
     if (sender === 'assistant' && typeof marked !== 'undefined') {
         bubble.innerHTML = marked.parse(text);
 
-        // Botão de áudio inserido ao lado da resposta da IA (só toca se clicado)
         const audioBtn = document.createElement('button');
         audioBtn.className = 'message-audio-btn';
         audioBtn.type = 'button';
